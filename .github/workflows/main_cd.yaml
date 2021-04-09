@@ -1,0 +1,46 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CD
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+  
+jobs:
+  deploy:
+    name: Deploy to ACR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Docker login
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.ACR_URL }}
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+      # Client
+      - name: Change directory to client
+        run: cd client/ 
+      - name: Docker build client
+        run: docker build . -t mapachapo.azurecr.io/client:${{ github.sha }}
+      - name: Docker push
+        run: docker push mapachapo.azurecr.io/client:${{ github.sha }}
+      # API
+      - name: Change directory to api
+        run: |
+          cd ..
+          cd api/
+      - name: Docker build client
+        run: docker build . -t mapachapo.azurecr.io/api:${{ github.sha }}
+      - name: Docker push
+        run: docker push mapachapo.azurecr.io/api:${{ github.sha }}
+      # Main
+      - name: Change directory to root
+        run: cd ..
+      - name: Docker build
+        run: docker build . -t mapachapo.azurecr.io/main:${{ github.sha }}
+      - name: Docker push
+        run: docker push mapachapo.azurecr.io/main:${{ github.sha }}

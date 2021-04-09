@@ -3,6 +3,7 @@ version: "2"
 services:
   client:
     build: ./client
+    image: mapachapo.azurecr.io/client:latest
     restart: always
     ports:
       - "8080:8080"
@@ -16,6 +17,7 @@ services:
 
   api:
     build: ./api
+    image: mapachapo.azurecr.io/api:latest
     restart: always
     ports:
       - "5000:5000"
