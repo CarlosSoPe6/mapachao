@@ -22,19 +22,13 @@ jobs:
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}
       # Client
-      - name: Change directory to client
-        run: cd client/ 
       - name: Docker build client
-        run: docker build . -t mapachapo.azurecr.io/client:${{ github.sha }}
+        run: docker build . -t mapachapo.azurecr.io/client:${{ github.sha }} --compress -f client/Dockerfile
       - name: Docker push
         run: docker push mapachapo.azurecr.io/client:${{ github.sha }}
       # API
-      - name: Change directory to api
-        run: |
-          cd ..
-          cd api/
       - name: Docker build client
-        run: docker build . -t mapachapo.azurecr.io/api:${{ github.sha }}
+        run: docker build . -t mapachapo.azurecr.io/api:${{ github.sha }} --compress -f api/Dockerfile
       - name: Docker push
         run: docker push mapachapo.azurecr.io/api:${{ github.sha }}
       # Main
