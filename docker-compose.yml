@@ -1,0 +1,46 @@
+version: "2"
+
+services:
+  client:
+    build: ./client
+    restart: always
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./client:/client
+      - /client/node_modules
+    links:
+      - api
+    networks:
+      - mapachaonetwork
+
+  api:
+    build: ./api
+    restart: always
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./api:/api
+      - /api/node_modules
+    depends_on:
+      - mongodb
+    networks:
+      - mapachaonetwork
+
+  mongodb:
+    image: mongo
+    restart: always
+    container_name: mongodb
+    volumes:
+      - ./data-node:/data/db
+    ports:
+      - 27017:27017
+    networks:
+      - mapachaonetwork
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+networks:
+  mapachaonetwork:
+    driver: bridge

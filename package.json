@@ -1,0 +1,20 @@
+{
+  "name": "mapachao",
+  "version": "1.0.0",
+  "description": "Raccoons as a Service",
+  "scripts": {
+    "api": "npm run server --prefix api",
+    "client": "npm start --prefix client",
+    "api-install": "npm install --prefix api",
+    "client-install": "npm install --prefix client",
+    "dev-install": "concurrently \"npm:api-install\" \"npm:client-install\"",
+    "dev": "concurrently \"npm:api\" \"npm:client\"",
+    "docker": "docker-compose up"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^6.0.1"
+  }
+}
