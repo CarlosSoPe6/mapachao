@@ -44,6 +44,6 @@ jobs:
           password: ${{ secrets.ACR_PASSWORD }}
       # Main
       - name: Docker build main
-        run: docker-compose build --compress --pull --parallel
+        run: docker-compose build --compress --parallel
       - name: Docker push main
         run: docker-compose push
