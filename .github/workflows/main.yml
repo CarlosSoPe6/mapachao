@@ -20,7 +20,9 @@ jobs:
         with:
           node-version: 14
       - name: Install
-        run: npm run dev-install
+        run: |
+          npm install
+          npm run dev-install
       - name: Build Back
         run: "echo 'Not implemented'"
       - name: Test Back
