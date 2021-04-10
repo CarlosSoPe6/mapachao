@@ -68,7 +68,7 @@ jobs:
       - name: Copy from UI to API public folder
         run: |
           pwd
-          cp -r ./client/build ./api/
+          cp -r client/build api/
       # Login to docker
       - name: Docker login
         uses: azure/docker-login@v1
