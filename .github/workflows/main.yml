@@ -34,7 +34,7 @@ jobs:
           pwd
           npm install
       - name: Build UI
-        run: echo 'not implemented'
+        run: npm run build
       - name: Test UI
         run: echo 'not implemented'
   deploy:
@@ -63,7 +63,7 @@ jobs:
           pwd
           npm install
       - name: Build UI
-        run: echo 'not implemented'
+        run: npm run build
       # Copy from UI to API public folder
       - name: Copy from UI to API public folder
         run: |
