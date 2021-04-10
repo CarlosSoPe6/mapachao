@@ -30,7 +30,8 @@ jobs:
       # Build and test UI
       - name: Install UI all depenendies
         run: |
-          cd ../client/
+          cd ..
+          cd client/
           pwd
           npm install
       - name: Build UI
