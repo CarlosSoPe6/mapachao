@@ -34,7 +34,10 @@ jobs:
           pwd
           npm install
       - name: Build UI
-        run: npm run build
+        run: |
+          cd client/
+          pwd
+          npm run build
       - name: Test UI
         run: echo 'not implemented'
   deploy:
