@@ -30,7 +30,6 @@ jobs:
       # Build and test UI
       - name: Install UI all depenendies
         run: |
-          cd ..
           cd client/
           pwd
           npm install
@@ -60,7 +59,7 @@ jobs:
       # Build UI
       - name: Install UI all depenendies
         run: |
-          cd ../ui/
+          cd client/
           pwd
           npm install
       - name: Build UI
@@ -68,7 +67,6 @@ jobs:
       # Copy from UI to API public folder
       - name: Copy from UI to API public folder
         run: |
-          cd ..
           pwd
           cp -r ./client/build ./api/
       # Login to docker
