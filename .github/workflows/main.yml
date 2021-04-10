@@ -63,7 +63,10 @@ jobs:
           pwd
           npm install
       - name: Build UI
-        run: npm run build
+        run: |
+          cd client/
+          pwd
+          npm run build
       # Copy from UI to API public folder
       - name: Copy from UI to API public folder
         run: |
