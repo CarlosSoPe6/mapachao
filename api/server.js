@@ -6,7 +6,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Connect Database
-connectDb();
+// connectDb();
 
 app.get("/", (req, res) => res.send("Hello raccoons!"));
 
