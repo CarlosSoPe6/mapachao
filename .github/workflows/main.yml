@@ -16,19 +16,27 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v1
         with:
-          node-version: 14
-      - name: Install
+          node-version: '14.16.1'
+      # Build and test API
+      - name: Install API all depenendies
         run: |
+          cd api/
+          pwd
           npm install
-          npm run dev-install
-      - name: Build Back
-        run: "echo 'Not implemented'"
-      - name: Test Back
-        run: "echo 'Not implemented'"
+      - name: Build API
+        run: echo 'not implemented'
+      - name: Test API
+        run: echo 'not implemented'
+      # Build and test UI
+      - name: Install UI all depenendies
+        run: |
+          cd ../client/
+          pwd
+          npm install
       - name: Build UI
-        run: "echo 'Not implemented'"
+        run: echo 'not implemented'
       - name: Test UI
-        run: "echo 'Not implemented'"
+        run: echo 'not implemented'
   deploy:
     name: Deploy to ACR
     runs-on: ubuntu-latest
@@ -36,6 +44,33 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.16.1'
+      # Build API
+      - name: Install API all depenendies
+        run: |
+          cd api/
+          pwd
+          npm install
+      - name: Build API
+        run: echo 'not implemented'
+      # Build UI
+      - name: Install UI all depenendies
+        run: |
+          cd ../ui/
+          pwd
+          npm install
+      - name: Build UI
+        run: echo 'not implemented'
+      # Copy from UI to API public folder
+      - name: Copy from UI to API public folder
+        run: |
+          cd ..
+          pwd
+          cp -r ./client/build ./api/
+      # Login to docker
       - name: Docker login
         uses: azure/docker-login@v1
         with:
@@ -44,6 +79,6 @@ jobs:
           password: ${{ secrets.ACR_PASSWORD }}
       # Main
       - name: Docker build main
-        run: docker-compose build --compress --parallel
+        run: docker-compose build --compress
       - name: Docker push main
         run: docker-compose push

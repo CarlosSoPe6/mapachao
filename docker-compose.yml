@@ -1,48 +1,18 @@
-version: "2"
+version: "3"
 
 services:
-  client:
-    build: ./client
-    image: mapachapo.azurecr.io/client:latest
+  main:
+    build: ./api
+    image: mapachapo.azurecr.io/main:latest
     restart: always
     ports:
-      - "8080:8080"
-    volumes:
-      - ./client:/client
-      - /client/node_modules
+      - "80:80"
     links:
       - api
     networks:
-      - mapachaonetwork
-
-  api:
-    build: ./api
-    image: mapachapo.azurecr.io/api:latest
-    restart: always
-    ports:
-      - "5000:5000"
+      - mapachaonetwork 
     volumes:
-      - ./api:/api
-      - /api/node_modules
-    depends_on:
-      - mongodb
-    networks:
-      - mapachaonetwork
-
-  mongodb:
-    image: mongo
-    restart: always
-    container_name: mongodb
-    volumes:
-      - ./data-node:/data/db
-    ports:
-      - 27017:27017
-    networks:
-      - mapachaonetwork
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
-
+      - ${WEBAPP_STORAGE_HOME}/app/media
 networks:
   mapachaonetwork:
     driver: bridge
