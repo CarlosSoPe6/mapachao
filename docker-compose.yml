@@ -6,9 +6,7 @@ services:
     image: mapachapo.azurecr.io/main:latest
     restart: always
     ports:
-      - "80:80"
-    links:
-      - api
+      - "5000:5000"
     networks:
       - mapachaonetwork 
     volumes:
