@@ -2,14 +2,18 @@ version: "3.2"
 services:
   main:
     build: ./api
-    image: mapachapo.azurecr.io/main:${DOCKER_TARGET}
+    image: mapachapo.azurecr.io/main:latest
     restart: always
     ports:
       - "5000:5000"
     networks:
       - mapachaonetwork 
     volumes:
-      - ${WEBAPP_STORAGE_HOME}/app/media
+      - media:/app/media
 networks:
   mapachaonetwork:
     driver: bridge
+volumes:
+  media:
+    external:
+      name: media
