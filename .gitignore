@@ -2,3 +2,5 @@ node_modules
 .snowpack
 build
 data-node
+
+secrets.env

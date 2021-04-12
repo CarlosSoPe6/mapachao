@@ -2,16 +2,16 @@
 FROM node:14.16.1-alpine3.13
 
 # Set the working directory to /api
-WORKDIR /api
+WORKDIR /app
 
 # copy package.json into the container at /api
-COPY package*.json /api/
+COPY package*.json /app/
 
 # install dependencies
 RUN npm install
 
 # Copy the current directory contents into the container at /api
-COPY . /api/
+COPY . /app/
 
 # Make port 5000 available to the world outside this container
 EXPOSE 5000
