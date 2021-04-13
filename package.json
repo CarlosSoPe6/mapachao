@@ -9,7 +9,7 @@
     "client-install": "npm install --prefix client",
     "dev-install": "concurrently \"npm:api-install\" \"npm:client-install\"",
     "dev": "concurrently \"npm:api\" \"npm:client\"",
-    "docker": "docker-compose up"
+    "docker": "docker-compose build && docker-compose up"
   },
   "keywords": [],
   "author": "",
