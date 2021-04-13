@@ -7,14 +7,11 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Connect Database
-// connectDb();
+connectDb();
 
 app.use(express.static(path.join(__dirname, "build")));
 
-app.get("/file_test", (req, res) =>
-  res.sendFile(path.join(__dirname, "media", "123456789.jfif"), {
-    headers: { "Content-Type": "image/jpeg" }
-  })
-);
+app.use("/mapache", require("./routes/mapache"));
+app.use("/raccoon", require("./routes/mapache"));
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
