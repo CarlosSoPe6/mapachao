@@ -3,4 +3,7 @@ node_modules
 build
 data-node
 
+# Logs
+*.log
+
 secrets.env
