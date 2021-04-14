@@ -4,8 +4,6 @@ services:
     build: ./api
     image: mapachapo.azurecr.io/main:latest
     restart: always
-    env_file:
-      - ./api/.env
     ports:
       - "5000:5000"
     networks:
