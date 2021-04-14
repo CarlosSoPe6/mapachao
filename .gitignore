@@ -2,8 +2,9 @@ node_modules
 .snowpack
 build
 data-node
+api/media
 
 # Logs
 *.log
 
-secrets.env
+*.env
