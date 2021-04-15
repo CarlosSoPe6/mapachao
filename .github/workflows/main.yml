@@ -24,7 +24,7 @@ jobs:
           pwd
           npm install
       - name: Build API
-        run: echo 'not implemented'
+        run: npm run api-lint
       - name: Test API
         run: echo 'not implemented'
       # Build and test UI

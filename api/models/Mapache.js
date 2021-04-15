@@ -1,30 +1,30 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const MapacheSchema = mongoose.Schema({
   filename: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
   // Add here more properties in the future
   // Tags
   // IsGif
   // Etc
 });
 
-const MapacheModel = mongoose.model("mapache", MapacheSchema);
+const MapacheModel = mongoose.model('mapache', MapacheSchema);
 
 /**
  * Creates a record in the database.
  * @param {String} filename Filename to store.
- * @returns {Promise<Boolean>} Prommise. 
+ * @returns {Promise<Boolean>} Prommise.
  */
 async function create(filename) {
-  const doc = new MapacheModel({filename});
-  return await doc.save();
+  const doc = new MapacheModel({ filename });
+  return doc.save();
 }
 
 async function countDocuments() {
-  return await MapacheModel.countDocuments();
+  return MapacheModel.countDocuments();
 }
 
 function findOne() {

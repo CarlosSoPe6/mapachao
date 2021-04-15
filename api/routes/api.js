@@ -1,8 +1,8 @@
-const express = require("express");
-const router = express.Router();
-const apiController = require("../controllers/api");
-const busboyHandler = require("../config/busboy");
+const express = require('express');
 
-router.post("/", apiController.postRoot);
+const router = express.Router();
+const apiController = require('../controllers/api');
+
+router.post('/', apiController.postRoot);
 
 module.exports = router;
