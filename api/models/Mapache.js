@@ -11,4 +11,19 @@ const MapacheSchema = mongoose.Schema({
   // Etc
 });
 
-module.exports = mongoose.model("mapache", MapacheSchema);
+const MapacheModel = mongoose.model("mapache", MapacheSchema);
+
+/**
+ * Creates a record in the database.
+ * @param {String} filename Filename to store.
+ * @returns {Promise<Boolean>} Prommise. 
+ */
+async function create(filename) {
+  const doc = new MapacheModel({filename});
+  return await doc.save();
+}
+
+module.exports = {
+  ...MapacheModel,
+  create,
+};
