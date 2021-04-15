@@ -11,6 +11,7 @@ connectDb();
 
 app.use(express.static(path.join(__dirname, "build")));
 
+app.use("/api", require("./routes/api"));
 app.use("/mapache", require("./routes/mapache"));
 app.use("/raccoon", require("./routes/mapache"));
 
