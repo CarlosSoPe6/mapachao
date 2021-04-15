@@ -1,5 +1,4 @@
-const path = require("path");
-const Busboy = require("busboy");
+const Busboy = require('busboy');
 
 /**
  * Callback for the file event
@@ -18,30 +17,27 @@ const Busboy = require("busboy");
  * @returns {void}
  */
 
-
 /**
  * Callback for the error event
  * @callback ErrorEventCallback
  * @returns {void}
  */
 
-
 /**
- * 
+ *
  * @param {Object} headers Headers of the request
  * @param {FileEventCallback} onFileCb  File callback
  * @param {FinishEventCallback} onFinishCb Finish callback
- * @param {ErrorEventCallback} onErrorCb Error callback 
+ * @param {ErrorEventCallback} onErrorCb Error callback
  * @returns {busboy.Busboy} Busboy
  */
 function handleFileUpload(headers, onFileCb, onFinishCb) {
-    const busboy = Busboy({headers: headers});
-    console.log(busboy);
-    busboy.on("file", onFileCb);
-    busboy.on("finish", onFinishCb);
-    return busboy;
+  const busboy = Busboy({ headers });
+  busboy.on('file', onFileCb);
+  busboy.on('finish', onFinishCb);
+  return busboy;
 }
 
 module.exports = {
-    handleFileUpload,
-}
+  handleFileUpload,
+};

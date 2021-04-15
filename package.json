@@ -6,6 +6,7 @@
     "api": "npm run server --prefix api",
     "client": "npm start --prefix client",
     "api-install": "npm install --prefix api",
+    "api-lint": "npm run lint --prefix api",
     "client-install": "npm install --prefix client",
     "dev-install": "concurrently \"npm:api-install\" \"npm:client-install\"",
     "dev": "concurrently \"npm:api\" \"npm:client\"",

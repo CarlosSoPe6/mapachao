@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-require("dotenv").config();
+const mongoose = require('mongoose');
+require('dotenv').config();
 
 const db = process.env.MONGO_URI;
 
@@ -9,12 +9,14 @@ const connectDB = async () => {
       useNewUrlParser: true,
       useCreateIndex: true,
       useFindAndModify: false,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
     });
 
-    console.log("MongoDB Connected");
+    // eslint-disable-next-line no-console
+    console.log('MongoDB Connected');
   } catch (err) {
-    console.error(err.nessage);
+    // eslint-disable-next-line no-console
+    console.error(err.message);
     process.exit(1);
   }
 };
