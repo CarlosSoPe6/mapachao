@@ -4,4 +4,7 @@ build
 data-node
 api/media
 
+# Logs
+*.log
+
 *.env
