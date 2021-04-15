@@ -23,7 +23,16 @@ async function create(filename) {
   return await doc.save();
 }
 
+async function countDocuments() {
+  return await MapacheModel.countDocuments();
+}
+
+function findOne() {
+  return MapacheModel.findOne();
+}
+
 module.exports = {
-  ...MapacheModel,
+  countDocuments,
+  findOne,
   create,
 };
