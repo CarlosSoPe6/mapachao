@@ -35,6 +35,7 @@ jobs:
           npm install
       - name: Build UI
         run: |
+          npm run client-lint
           cd client/
           pwd
           npm run build
