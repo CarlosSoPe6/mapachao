@@ -1,29 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-import logo from "./logo.svg";
+import "bootswatch/dist/cosmo/bootstrap.min.css";
 import "./App.css";
 
-const App = () => {
-  // Create the count state.
-  const [count, setCount] = useState(0);
+import Navbar from "./components/layout/Navbar";
+import Home from "./components/pages/Home";
 
-  // Update the count (+1 every second).
-  useEffect(() => {
-    const timer = setTimeout(() => setCount(count + 1), 1000);
-    return () => clearTimeout(timer);
-  }, [count, setCount]);
-
-  // Return the App component.
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Page has been open for <code>{count}</code> seconds.
-        </p>
-      </header>
-    </div>
-  );
-};
+const App = () => (
+  <div>
+    <Navbar />
+    <Home />
+  </div>
+);
 
 export default App;
