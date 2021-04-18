@@ -15,6 +15,7 @@
   "plugins": ["react"],
   "rules": {
     "jsx-quotes": ["error", "prefer-double"],
-    "quotes": ["error", "double"]
+    "quotes": ["error", "double"],
+    "react/prop-types": "off"
   }
 }

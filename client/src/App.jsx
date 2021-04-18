@@ -1,6 +1,6 @@
 import React from "react";
 
-import "bootswatch/dist/cosmo/bootstrap.min.css";
+import "bootswatch/dist/sandstone/bootstrap.min.css";
 import "./App.css";
 
 import Navbar from "./components/layout/Navbar";
