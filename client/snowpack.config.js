@@ -3,7 +3,7 @@ module.exports = {
   mount: {
     // directory name: 'build directory'
     public: "/",
-    src: "/dist"
+    src: "/dist",
   },
   plugins: ["@snowpack/plugin-react-refresh"],
   routes: [
@@ -22,5 +22,5 @@ module.exports = {
   },
   buildOptions: {
     /* ... */
-  }
+  },
 };
