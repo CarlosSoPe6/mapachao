@@ -1,50 +1,13 @@
-name: CICD
+name: CD
 on:
   push:
-    branches: [ main ]
-  pull_request:
     branches: [ main ]
   workflow_dispatch:
   
 jobs:
-  build_test:
-    name: Build and test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: '14.16.1'
-      # Build and test API
-      - name: Install API all depenendies
-        run: |
-          cd api/
-          pwd
-          npm install
-      - name: Build API
-        run: npm run api-lint
-      - name: Test API
-        run: echo 'not implemented'
-      # Build and test UI
-      - name: Install UI all depenendies
-        run: |
-          cd client/
-          pwd
-          npm install
-      - name: Build UI
-        run: |
-          npm run client-lint
-          cd client/
-          pwd
-          npm run build
-      - name: Test UI
-        run: echo 'not implemented'
   deploy:
     name: Deploy to ACR
     runs-on: ubuntu-latest
-    needs: build_test
     steps:
       - name: Checkout
         uses: actions/checkout@v2
