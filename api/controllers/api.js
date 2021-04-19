@@ -15,7 +15,8 @@ function postRoot(req, res) {
   const outPath = path.join(__dirname, '..', 'media', filename);
   const busboyStream = busboyHandler.handleFileUpload(
     headers,
-    fileHandler.saveFileAt(outPath), () => {
+    fileHandler.saveFileAt(outPath),
+    () => {
       Mapache.create(filename).then(() => {
         res.end();
       }).catch(() => {

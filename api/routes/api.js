@@ -1,7 +1,7 @@
 const express = require('express');
+const apiController = require('../controllers/api');
 
 const router = express.Router();
-const apiController = require('../controllers/api');
 
 router.post('/', apiController.postRoot);
 
