@@ -5,8 +5,11 @@ const MapacheSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  tags: {
+    type: Array,
+    required: false,
+  },
   // Add here more properties in the future
-  // Tags
   // IsGif
   // Etc
 });
@@ -23,16 +26,40 @@ async function create(filename) {
   return doc.save();
 }
 
-async function countDocuments() {
-  return MapacheModel.countDocuments();
+async function countDocuments(filter) {
+  if (filter === undefined) {
+    return MapacheModel.countDocuments();
+  }
+  return MapacheModel.countDocuments(filter);
 }
 
-function findOne() {
-  return MapacheModel.findOne();
+function findOne(filter) {
+  if (filter === undefined) {
+    return MapacheModel.findOne();
+  }
+  return MapacheModel.findOne(filter);
+}
+
+async function getRandom() {
+  const count = await countDocuments();
+  const random = Math.floor(Math.random() * count);
+  const mapache = await findOne().skip(random);
+  return mapache;
+}
+
+async function getMapacheByTag(tag) {
+  // Diable for querying
+  // eslint-disable-next-line quote-props
+  const count = await countDocuments({ 'tags': tag });
+  const random = Math.floor(Math.random() * count);
+  const mapache = await findOne().skip(random);
+  return mapache;
 }
 
 module.exports = {
   countDocuments,
   findOne,
   create,
+  getRandom,
+  getMapacheByTag,
 };
