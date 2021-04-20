@@ -1,26 +1,9 @@
 const express = require('express');
+const rootController = require('../controllers/root');
 
 const router = express.Router();
-const path = require('path');
 
-const Mapache = require('../models/Mapache');
-
-// @route       GET /mapache or /raccoon
-// @desc        Get a random raccoon
-// @access      Public
-router.get('/', async (req, res) => {
-  try {
-    const count = await Mapache.countDocuments();
-    const random = Math.floor(Math.random() * count);
-    const mapache = await Mapache.findOne().skip(random);
-    const options = {
-      headers: { 'Content-Type': 'image/png' },
-    };
-
-    res.sendFile(path.join(__dirname, '..', 'media', mapache.filename), options);
-  } catch (err) {
-    res.status(500).send('Server error');
-  }
-});
+router.get('/', rootController.getMapache);
+router.get('/:tag', rootController.getMapacheByTag);
 
 module.exports = router;

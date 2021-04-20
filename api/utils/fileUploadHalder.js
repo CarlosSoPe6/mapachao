@@ -55,4 +55,5 @@ function saveFileAt(outputFile, acceptedMimetypes, acceptedEncodings) {
 
 module.exports = {
   saveFileAt,
+  FileUploadHandlerException,
 };
