@@ -5,7 +5,8 @@
     "server": "nodemon server.js",
     "lint-fix": "eslint --fix .",
     "lint": "eslint .",
-    "test": "env-cmd -f .env jest --coverage --runInBand --detectOpenHandles --forceExit"
+    "test": "jest --coverage --runInBand --detectOpenHandles --forceExit",
+    "test:local": "env-cmd -f .env jest --coverage --runInBand --detectOpenHandles --forceExit"
   },
   "jest": {
     "testEnvironment": "node",
