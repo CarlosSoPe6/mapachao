@@ -8,3 +8,6 @@ api/media
 *.log
 
 *.env
+
+# Tests
+api/coverage
