@@ -7,7 +7,7 @@
     "client": "npm start --prefix client",
     "api-install": "npm install --prefix api",
     "api-lint": "npm run lint --prefix api",
-    "api-test": "npm run lint --prefix test",
+    "api-test": "npm run test --prefix test",
     "client-lint": "npm run lint --prefix client",
     "client-install": "npm install --prefix client",
     "dev-install": "concurrently \"npm:api-install\" \"npm:client-install\"",
