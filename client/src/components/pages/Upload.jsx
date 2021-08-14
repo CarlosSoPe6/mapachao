@@ -1,44 +1,36 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
+import UploadItem from "../layout/UploadItem";
 
 const Upload = () => {
-  const [files, setFiles] = useState([]);
-
   const [hovered, setHovered] = useState(false);
   const toggleHover = () => setHovered(!hovered);
+
+  const [files, setFiles] = useState([]);
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/jpeg, image/png, image/gif, image/jfif",
     onDrop: (acceptedFiles) => {
-      setFiles([
-        ...files,
-        acceptedFiles.map((file) => {
-          Object.assign(file, { preview: URL.createObjectURL(file) });
-          return (
-            <li key={file.path}>
-              <img
-                src={file.preview}
-                style={{
-                  display: "block",
-                  width: "100px",
-                  height: "auto",
-                }}
-              />
-              {file.name} - {(file.size / 1024).toFixed(2) + " KB"}
-            </li>
-          );
-        }),
-      ]);
+      setFiles(
+        [
+          ...files,
+          acceptedFiles.map((file) => {
+            Object.assign(file, { preview: URL.createObjectURL(file) });
+            return file;
+          }),
+        ].flat(),
+      );
     },
   });
 
-  useEffect(
-    () => () => {
-      // Make sure to revoke the data uris to avoid memory leaks
-      files.forEach((file) => URL.revokeObjectURL(file.preview));
-    },
-    [files],
-  );
+  const removeFile = (filename) => {
+    setFiles(files.filter((file) => file.name !== filename));
+  };
+
+  const onSend = () => {
+    // Do stuff to send to API
+    console.log(files);
+  };
 
   return (
     <div className="row justify-content-center">
@@ -72,8 +64,51 @@ const Upload = () => {
         </div>
       </div>
       <aside>
-        {files.length > 0 ? <h4>Files</h4> : <></>}
-        <ul>{files}</ul>
+        {files?.length > 0 ? (
+          <div>
+            <table className="mt-4 table table-striped table-condensed">
+              <thead>
+                <tr className="table-success">
+                  <th scope="col" className="col-md-1">
+                    Image
+                  </th>
+                  <th scope="col" className="col-md-6">
+                    Name
+                  </th>
+                  <th scope="col" className="col-md-4">
+                    Tags
+                  </th>
+                  <th scope="col" className="col-md-1">
+                    Action
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {files.map((file, index) => (
+                  <UploadItem key={index} file={file} remove={removeFile} />
+                ))}
+              </tbody>
+            </table>
+            <div className="d-flex justify-content-end">
+              <button
+                type="button"
+                className="btn btn-success mx-2"
+                onClick={onSend}
+              >
+                Send
+              </button>
+              <button
+                type="button"
+                className="btn btn-light"
+                onClick={() => setFiles([])}
+              >
+                Clear
+              </button>
+            </div>
+          </div>
+        ) : (
+          <></>
+        )}
       </aside>
     </div>
   );
