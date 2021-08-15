@@ -14,11 +14,13 @@ const Upload = () => {
       setFiles(
         [
           ...files,
-          acceptedFiles.map((file) => {
+          acceptedFiles.reduce((acc, file) => {
+            if (files.findIndex((temp) => temp.name === file.name) >= 0)
+              return [...acc];
             Object.assign(file, { preview: URL.createObjectURL(file) });
-            return file;
-          }),
-        ].flat(),
+            return [...acc, file];
+          }, []),
+        ].flat(Number.POSITIVE_INFINITY),
       );
     },
   });
@@ -84,8 +86,8 @@ const Upload = () => {
                 </tr>
               </thead>
               <tbody>
-                {files.map((file, index) => (
-                  <UploadItem key={index} file={file} remove={removeFile} />
+                {files.map((file) => (
+                  <UploadItem key={file.name} file={file} remove={removeFile} />
                 ))}
               </tbody>
             </table>
