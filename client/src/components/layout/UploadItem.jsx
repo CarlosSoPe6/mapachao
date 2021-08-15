@@ -7,9 +7,17 @@ const UploadItem = ({ file, remove }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (currentTag.length > 0) {
+      if (tags.findIndex((tag) => tag === currentTag) >= 0) {
+        setCurrentTag("");
+        return;
+      }
       setTags([...tags, currentTag]);
       setCurrentTag("");
     }
+  };
+
+  const removeTag = (tagToRemove) => {
+    setTags(tags.filter((tag) => tag !== tagToRemove));
   };
 
   return (
@@ -30,7 +38,7 @@ const UploadItem = ({ file, remove }) => {
       <td>
         <div className="form-group">
           <form onSubmit={handleSubmit}>
-            <div className="input-group">
+            <div className="input-group mb-1">
               <input
                 className="form-control form-control-sm"
                 type="text"
@@ -43,7 +51,18 @@ const UploadItem = ({ file, remove }) => {
             </div>
           </form>
           {/* Replace this with fancier format and ability to remove/delete tags */}
-          <div>{tags?.join(", ")}</div>
+          <div>
+            {tags?.map((tag) => (
+              <button
+                key={tag}
+                className="btn btn-info btn-sm me-1 mt-1"
+                title="Remove tag"
+                onClick={() => removeTag(tag)}
+              >
+                {tag}
+              </button>
+            ))}
+          </div>
         </div>
       </td>
       <td>
