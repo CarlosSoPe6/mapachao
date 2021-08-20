@@ -87,7 +87,12 @@ const Upload = () => {
               </thead>
               <tbody>
                 {files.map((file) => (
-                  <UploadItem key={file.name} file={file} remove={removeFile} />
+                  <UploadItem
+                    key={file.name}
+                    file={file}
+                    remove={removeFile}
+                    sendTags={(tags) => (file.tags = tags)}
+                  />
                 ))}
               </tbody>
             </table>

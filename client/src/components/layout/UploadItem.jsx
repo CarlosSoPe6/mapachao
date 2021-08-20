@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const UploadItem = ({ file, remove }) => {
+const UploadItem = ({ file, remove, sendTags }) => {
   const [currentTag, setCurrentTag] = useState("");
   const [tags, setTags] = useState([]);
+
+  useEffect(() => {
+    sendTags(tags);
+  }, [tags]);
 
   const addTag = (e) => {
     e.preventDefault();
