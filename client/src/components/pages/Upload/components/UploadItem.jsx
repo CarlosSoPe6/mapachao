@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const UploadItem = ({ file, remove, sendTags }) => {
+const UploadItem = ({ file, removeFile, sendTags }) => {
   const [currentTag, setCurrentTag] = useState("");
   const [tags, setTags] = useState([]);
 
@@ -73,7 +73,7 @@ const UploadItem = ({ file, remove, sendTags }) => {
         <button
           type="button"
           className="btn btn-danger"
-          onClick={() => remove(file.name)}
+          onClick={() => removeFile(file.name)}
         >
           <i className="fas fa-trash-alt"></i>
         </button>

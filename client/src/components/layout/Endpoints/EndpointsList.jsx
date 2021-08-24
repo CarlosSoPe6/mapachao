@@ -15,7 +15,7 @@ const EndpointsList = () => (
     </thead>
     <tbody>
       {endpoints.map((endpoint) => (
-        <Endpoint key={endpoint.id} endpoint={endpoint} />
+        <Endpoint key={endpoint.id} {...endpoint} />
       ))}
     </tbody>
   </table>

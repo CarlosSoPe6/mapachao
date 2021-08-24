@@ -1,6 +1,6 @@
 import React from "react";
 
-const Endpoint = ({ endpoint: { url, description, example } }) => (
+const Endpoint = ({ url, description, example }) => (
   <tr className="d-flex">
     <th className="col-3">{url}</th>
     <td className="col-6">{description}</td>

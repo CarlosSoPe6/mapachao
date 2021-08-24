@@ -1,5 +1,5 @@
 import React from "react";
-import EndpointsList from "../layout/EndpointsList";
+import EndpointsList from "../../layout/Endpoints/EndpointsList";
 
 const Home = () => (
   <>

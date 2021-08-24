@@ -6,15 +6,15 @@ import "bootswatch/dist/zephyr/bootstrap.min.css";
 import "./App.css";
 
 import Navbar from "./components/layout/Navbar";
-import Home from "./components/pages/Home";
-import Upload from "./components/pages/Upload";
+import Home from "./components/pages/Home/Home";
+import UploadContainer from "./components/pages/Upload/UploadContainer";
 
 const App = () => (
   <HashRouter>
     <Navbar />
     <div className="container mt-5">
       <Route exact path="/" component={Home} />
-      <Route exact path="/upload" component={Upload} />
+      <Route exact path="/upload" component={UploadContainer} />
     </div>
   </HashRouter>
 );
