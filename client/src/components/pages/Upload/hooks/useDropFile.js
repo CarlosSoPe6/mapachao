@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 
 const useDropFile = () => {
@@ -11,8 +11,7 @@ const useDropFile = () => {
         [
           ...files,
           acceptedFiles.reduce((acc, file) => {
-            if (files.findIndex((temp) => temp.name === file.name) >= 0)
-              return [...acc];
+            if (files.findIndex((temp) => temp.name === file.name) >= 0) return [...acc];
             Object.assign(file, { preview: URL.createObjectURL(file) });
             return [...acc, file];
           }, []),
@@ -21,7 +20,9 @@ const useDropFile = () => {
     },
   });
 
-  return { files, setFiles, getRootProps, getInputProps };
-}
+  return {
+    files, setFiles, getRootProps, getInputProps,
+  };
+};
 
 export default useDropFile;

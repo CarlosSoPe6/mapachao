@@ -75,7 +75,7 @@ const UploadItem = ({ file, removeFile, sendTags }) => {
           className="btn btn-danger"
           onClick={() => removeFile(file.name)}
         >
-          <i className="fas fa-trash-alt"></i>
+          <i className="fas fa-trash-alt" />
         </button>
       </td>
     </tr>
