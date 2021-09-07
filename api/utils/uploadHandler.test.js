@@ -1,4 +1,4 @@
-const { FileUploadHandlerException, saveFileAt } = require('./fileUploadHalder');
+const { FileUploadHandlerException, saveFileAt } = require('./uploadHalder');
 
 describe('FileUploadHandlerException', () => {
   describe('Message stored', () => {
