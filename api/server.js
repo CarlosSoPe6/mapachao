@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors')
 const path = require('path');
 const connectDb = require('./config/db');
 
@@ -10,6 +11,7 @@ const PORT = process.env.PORT || 5000;
 connectDb();
 
 app.use(express.static(path.join(__dirname, 'build')));
+app.use(cors());
 
 app.use('/api', require('./routes/api'));
 app.use('/mapache', require('./routes/mapache'));

@@ -25,7 +25,6 @@ const UploadContainer = () => {
   };
 
   const onSend = () => {
-    console.log(files);
     files.forEach(async (file) => {
       try {
         await upload(file);
