@@ -10,12 +10,12 @@ const useDropFile = () => {
       setFiles(
         [
           ...files,
-          acceptedFiles.reduce((acc, file) => {
+          ...acceptedFiles.reduce((acc, file) => {
             if (files.findIndex((temp) => temp.name === file.name) >= 0) return [...acc];
             Object.assign(file, { preview: URL.createObjectURL(file) });
             return [...acc, file];
           }, []),
-        ].flat(Number.POSITIVE_INFINITY),
+        ],
       );
     },
   });
