@@ -21,8 +21,8 @@ const MapacheModel = mongoose.model('mapache', MapacheSchema);
  * @param {String} filename Filename to store.
  * @returns {Promise<Boolean>} Prommise.
  */
-async function create(filename) {
-  const doc = new MapacheModel({ filename });
+async function create(filename, tags) {
+  const doc = new MapacheModel({ filename, tags });
   return doc.save();
 }
 

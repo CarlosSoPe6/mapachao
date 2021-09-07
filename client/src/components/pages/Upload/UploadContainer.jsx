@@ -16,6 +16,7 @@ const UploadContainer = () => {
     const formData = new FormData();
 
     formData.append("file", file);
+    formData.append("tags", JSON.stringify({tags: file.tags}));
 
     return http.post("/api", formData, {
       headers: {

@@ -1,6 +1,6 @@
 const path = require('path');
 const busboyHandler = require('../config/busboy');
-const fileHandler = require('../utils/fileUploadHalder');
+const fileHandler = require('../utils/uploadHalder');
 const Mapache = require('../models/Mapache');
 
 /**
@@ -13,11 +13,27 @@ function postRoot(req, res) {
   const now = new Date(Date.now());
   const filename = `${now.getTime()}.png`;
   const outPath = path.join(__dirname, '..', 'media', filename);
+  const tags = [];
   const busboyStream = busboyHandler.handleFileUpload(
     headers,
+    fileHandler.processField((fieldName, value) => {
+      if (typeof (value) !== 'string') {
+        return;
+      }
+      const splittedValue = value.split(',');
+      if (fieldName === 'tags') {
+        try {
+          const parsedTags = JSON.parse(value).tags;
+          tags.push(...parsedTags);
+        } catch (e) {
+          console.error(e);
+        }
+      }
+    }),
     fileHandler.saveFileAt(outPath),
     () => {
-      Mapache.create(filename).then(() => {
+      console.log(filename, tags);
+      Mapache.create(filename, tags).then(() => {
         res.end();
       }).catch(() => {
         res.status(500).end();

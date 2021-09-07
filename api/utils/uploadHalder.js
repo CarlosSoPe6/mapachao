@@ -53,7 +53,27 @@ function saveFileAt(outputFile, acceptedMimetypes, acceptedEncodings) {
   };
 }
 
+/**
+ * Callback for the field event.
+ * @callback FieldEventCallback
+ * @param {string} fieldname
+ * @param {string|number} value
+ * @returns {void} None.
+ */
+
+/**
+ * Writes a file in the specified location and name.
+ * @param {FieldEventCallback} fieldCallback File to write.
+ * @returns {FieldEventCallback} Event handler.
+ */
+function processField(fieldCallback) {
+  return (fieldname, val) => {
+    fieldCallback(fieldname, val);
+  };
+}
+
 module.exports = {
   saveFileAt,
+  processField,
   FileUploadHandlerException,
 };
